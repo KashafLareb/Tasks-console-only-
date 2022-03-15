@@ -1,16 +1,22 @@
 class Task < ApplicationRecord
-  # include AASM
+  include AASM
 
-  # aasm do # default column: aasm_state
-  #   state :sleeping, initial: true
-  #   state :running
+  aasm do # default column: aasm_state
+    state :no_status, initial: true
+    state :next_up
+    state :in_progress
+    state :completed
 
-  #   event :run do
-  #     transitions from: :sleeping, to: :running
-  #   end
+    event :stage do
+      transitions from: :no_status, to: :next_up
+    end
 
-  #   event :sleep do
-  #     transitions from: :running, to: :sleeping
-  #   end
-  # end
+    event :start do
+      transitions from: :next_up, to: :in_progress
+    end
+
+    event :complete do
+      transitions from: :in_progress, to: :completed
+    end
+  end
 end
