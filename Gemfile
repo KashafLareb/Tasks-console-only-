@@ -29,6 +29,9 @@ gem "jbuilder"
 
 gem "webpacker"
 
+gem "aasm"
+gem 'after_commit_everywhere', '~> 1.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
